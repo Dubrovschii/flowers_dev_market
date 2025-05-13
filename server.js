@@ -201,6 +201,8 @@ const startServer = async () => {
 
         app.use('/uploads/promoslider', express.static(path.join(__dirname, 'public', 'uploads/promoslider')));
         app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
+        app.use('/admin/components.bundle.js', express.static(path.join(__dirname, 'public', 'js', 'components.bundle.js')));
+
         adminJs.watch()
 
         app.listen(PORT, () => {
