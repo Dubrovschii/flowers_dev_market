@@ -248,10 +248,11 @@ app.use(session({
     cookie: {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        maxAge: parseInt(process.env.SESSION_COOKIE_MAX_AGE) || 86400000, // по умолчанию 24 часа
-        sameSite: 'strict',  // Для безопасности
+        maxAge: parseInt(process.env.SESSION_COOKIE_MAX_AGE) || 86400000,
+        sameSite: 'strict',
     },
 }));
+
 
 // Подключение к базе данных через Sequelize
 const sequelize = new Sequelize({
@@ -308,6 +309,7 @@ const authenticate = async (email, password) => {
     return null;
 };
 
+
 // Запуск сервера
 const startServer = async () => {
     try {
@@ -315,6 +317,22 @@ const startServer = async () => {
         console.log('Database connection established');
 
         // Создание маршрута с аутентификацией
+        // const adminRouter = AdminJSExpress.buildAuthenticatedRouter(
+        //     adminJs,
+        //     { authenticate, cookiePassword: process.env.COOKIE_SECRET || 'super-secret-cookie' },
+        //     null,
+        //     {
+        //         resave: false,
+        //         saveUninitialized: false,
+        //         secret: process.env.SESSION_SECRET || 'super-secret',
+        //         cookie: {
+        //             httpOnly: true,
+        //             secure: process.env.NODE_ENV === 'production',
+        //             sameSite: 'strict',
+        //         },
+        //         name: 'adminjs',
+        //     }
+        // );
         const adminRouter = AdminJSExpress.buildAuthenticatedRouter(
             adminJs,
             { authenticate, cookiePassword: process.env.COOKIE_SECRET || 'super-secret-cookie' },
@@ -331,7 +349,6 @@ const startServer = async () => {
                 name: 'adminjs',
             }
         );
-
         // Использование маршрута AdminJS
         app.use(adminJs.options.rootPath, adminRouter);
 
