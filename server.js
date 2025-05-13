@@ -333,24 +333,29 @@ const startServer = async () => {
         //         name: 'adminjs',
         //     }
         // );
-        const adminRouter = AdminJSExpress.buildAuthenticatedRouter(
-            adminJs,
-            { authenticate, cookiePassword: process.env.COOKIE_SECRET || 'super-secret-cookie' },
-            null,
-            {
-                resave: false,
-                saveUninitialized: false,
-                secret: process.env.SESSION_SECRET || 'super-secret',
-                cookie: {
-                    httpOnly: true,
-                    secure: process.env.NODE_ENV === 'production',
-                    sameSite: 'strict',
-                },
-                name: 'adminjs',
-            }
-        );
+        const adminRouter = AdminJSExpress.buildRouter(adminJs);
+
         // Использование маршрута AdminJS
         app.use(adminJs.options.rootPath, adminRouter);
+
+        // const adminRouter = AdminJSExpress.buildAuthenticatedRouter(
+        //     adminJs,
+        //     { authenticate, cookiePassword: process.env.COOKIE_SECRET || 'super-secret-cookie' },
+        //     null,
+        //     {
+        //         resave: false,
+        //         saveUninitialized: false,
+        //         secret: process.env.SESSION_SECRET || 'super-secret',
+        //         cookie: {
+        //             httpOnly: true,
+        //             secure: process.env.NODE_ENV === 'production',
+        //             sameSite: 'strict',
+        //         },
+        //         name: 'adminjs',
+        //     }
+        // );
+        // Использование маршрута AdminJS
+        // app.use(adminJs.options.rootPath, adminRouter);
 
         // Статические файлы для React
         app.use(express.static(path.join(__dirname, 'build')));
