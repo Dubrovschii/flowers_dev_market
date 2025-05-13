@@ -76,7 +76,7 @@ const adminJs = new AdminJS({
     rootPath: '/admin',
     assets: {
         styles: ['/custom.css'],
-        scripts: ['/admin/assets/components.bundle.js'],
+        // scripts: ['/admin/assets/components.bundle.js'],
 
     },
 });
