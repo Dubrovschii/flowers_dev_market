@@ -117,6 +117,9 @@ const startServer = async () => {
 
         app.use(adminJs.options.rootPath, adminRouter);
 
+
+        app.use('/', express.static('build'));
+        app.use('/shop', express.static('build'));
         // API endpoints
         app.get('/api/', async (req, res) => {
             try {
@@ -126,7 +129,7 @@ const startServer = async () => {
                 res.status(500).json({ error: err.message });
             }
         });
-        app.use('/', express.static('build'));
+
         app.get('/api/category', async (req, res) => {
             try {
                 const [results] = await sequelize.query('SELECT * FROM backend_category');

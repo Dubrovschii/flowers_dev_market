@@ -29,6 +29,7 @@ const ShopSection = () => {
   const [perPage] = useState(3);
   const [totalPages, setTotalPages] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
+
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_BASE_URL}/api/product?page=${page}&perPage=${perPage}`
@@ -40,7 +41,7 @@ const ShopSection = () => {
         setTotalProducts(data.totalProducts);
       })
       .catch((err) => console.error("Ошибка загрузки продуктов", err));
-  }, [page]);
+  }, [page, perPage]);
 
   // Используй setPage(nextPage) чтобы переключать страницы
 
