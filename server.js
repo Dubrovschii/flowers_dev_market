@@ -80,19 +80,32 @@ const adminJs = new AdminJS({
 });
 
 // Учетные данные администратора
-const DEFAULT_ADMIN = {
-    email: 'admin@example.com',
-    password: 'password',
-};
+// const DEFAULT_ADMIN = {
+//     email: 'admin@example.com',
+//     password: 'password',
+// };
 
-// Аутентификация администратора
+// // Аутентификация администратора
+// const authenticate = async (email, password) => {
+//     if (email === DEFAULT_ADMIN.email && password === DEFAULT_ADMIN.password) {
+//         return Promise.resolve(DEFAULT_ADMIN);
+//     }
+//     return null;
+// };
 const authenticate = async (email, password) => {
+    // Получаем значения из переменных окружения
+    const DEFAULT_ADMIN = {
+        email: process.env.ADMIN_EMAIL,
+        password: process.env.ADMIN_PASSWORD,
+    };
+
+    // Проверяем email и пароль
     if (email === DEFAULT_ADMIN.email && password === DEFAULT_ADMIN.password) {
         return Promise.resolve(DEFAULT_ADMIN);
     }
+
     return null;
 };
-
 // Запуск сервера
 const startServer = async () => {
     try {
