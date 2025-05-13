@@ -285,10 +285,10 @@ const adminJs = new AdminJS({
     componentLoader,
     ...AdminJSOptions,
     rootPath: '/admin',
-    assets: {
-        styles: ['/custom.css'],
-        scripts: ['/admin/assets/components.bundle.js'],
-    },
+    // assets: {
+    //     styles: ['/custom.css'],
+    //     scripts: ['/admin/assets/components.bundle.js'],
+    // },
 });
 
 // Функция аутентификации
@@ -401,8 +401,8 @@ const startServer = async () => {
         // Статические файлы для изображений
         app.use('/uploads/promoslider', express.static(path.join(__dirname, 'public', 'uploads/promoslider')));
         app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
-        app.use('/admin/components.bundle.js', express.static(path.join(__dirname, 'public', 'js', 'components.bundle.js')));
-        app.use('/admin/assets', express.static(path.join(__dirname, 'public', 'admin-assets')));
+        // app.use('/admin/components.bundle.js', express.static(path.join(__dirname, 'public', 'js', 'components.bundle.js')));
+        // app.use('/admin/assets', express.static(path.join(__dirname, 'public', 'admin-assets')));
 
         // Отслеживание изменений AdminJS
         adminJs.watch();
