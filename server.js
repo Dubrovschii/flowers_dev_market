@@ -335,9 +335,16 @@ const startServer = async () => {
         // Использование маршрута AdminJS
         app.use(adminJs.options.rootPath, adminRouter);
 
-        // Статические файлы
-        app.use('/', express.static('build'));
-        app.use('/shop', express.static('build'));
+        // Статические файлы для React
+        app.use(express.static(path.join(__dirname, 'build')));
+
+        // Все нераспознанные маршруты будут перенаправлены на React приложение (для SPA)
+        app.get('/', (req, res) => {
+            res.sendFile(path.join(__dirname, 'build', 'index.html'));
+        });
+        app.get('/shop', (req, res) => {
+            res.sendFile(path.join(__dirname, 'build', 'index.html'));
+        });
 
         // API эндпоинты
         app.get('/api/', async (req, res) => {
@@ -401,8 +408,6 @@ const startServer = async () => {
         // Статические файлы для изображений
         app.use('/uploads/promoslider', express.static(path.join(__dirname, 'public', 'uploads/promoslider')));
         app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
-        // app.use('/admin/components.bundle.js', express.static(path.join(__dirname, 'public', 'js', 'components.bundle.js')));
-        // app.use('/admin/assets', express.static(path.join(__dirname, 'public', 'admin-assets')));
 
         // Отслеживание изменений AdminJS
         adminJs.watch();
