@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-const PORT = process.env.PORTAdmin || 3001;
+const PORT = process.env.PORTAdmin || 8080;
 // Настройки CORS
 
 // app.use(cors({
@@ -192,8 +192,8 @@ const startServer = async () => {
 
         app.listen(PORT, () => {
             console.log(PORT);
-            console.log('Server is running on http://localhost:3000');
-            console.log('AdminJS is running at http://localhost:3001/admin');
+            // console.log('Server is running on http://localhost:3000');
+            // console.log('AdminJS is running at http://localhost:3001/admin');
         });
 
     } catch (error) {
