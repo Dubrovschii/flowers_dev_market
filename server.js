@@ -21,11 +21,11 @@ const app = express();
 const PORT = process.env.PORTAdmin || 8080;
 // Настройки CORS
 
-// app.use(cors({
-//     origin: ['https://flowersdevmarket-production.up.railway.app', 'http://localhost:3000', 'http://app.vetro.md'],
-//     credentials: true,
-// }));
-app.use(cors());
+app.use(cors({
+    origin: ['https://flowers-dev-market.onrender.com', 'http://localhost:3000', 'http://app.vetro.md'],
+    credentials: true,
+}));
+// app.use(cors());
 
 // Парсинг JSON
 app.use(express.json());
