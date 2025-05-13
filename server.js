@@ -76,6 +76,8 @@ const adminJs = new AdminJS({
     rootPath: '/admin',
     assets: {
         styles: ['/custom.css'],
+        scripts: ['/admin/assets/components.bundle.js'],
+
     },
 });
 
@@ -202,6 +204,7 @@ const startServer = async () => {
         app.use('/uploads/promoslider', express.static(path.join(__dirname, 'public', 'uploads/promoslider')));
         app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
         app.use('/admin/components.bundle.js', express.static(path.join(__dirname, 'public', 'js', 'components.bundle.js')));
+        app.use('/admin/assets', express.static(path.join(__dirname, 'public', 'admin-assets')));
 
         adminJs.watch()
 
