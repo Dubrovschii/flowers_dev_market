@@ -22,7 +22,7 @@ const PORT = process.env.PORTAdmin || 3001;
 // Настройки CORS
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://app.vetro.md'],
+    origin: ['https://flowersdevmarket-production.up.railway.app', 'http://localhost:3000', 'http://app.vetro.md'],
     credentials: true,
 }));
 
