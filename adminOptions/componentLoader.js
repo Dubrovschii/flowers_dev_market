@@ -9,7 +9,7 @@ const componentLoader = new ComponentLoader();
 
 // Регистрируем только наши кастомные компоненты
 const Components = {
-    Dashboard: componentLoader.add('Dashboard', path.join(__dirname, '../adminOptions/components/imageAdd.jsx')),
+    Dashboard: componentLoader.add('Dashboard', path.join(__dirname, './components/imageAdd.jsx')),
 
 };
 
